@@ -51,6 +51,11 @@ export function generateMetadata({ params }) {
   };
 }
 
+// Helper function to highlight words in text
+const Highlight = ({ children }) => (
+  <span className="text-white">{children}</span>
+);
+
 export default function Blog({ params }) {
   let post = getBlogPosts().find((post) => post.slug === params.slug);
 
@@ -59,7 +64,7 @@ export default function Blog({ params }) {
   }
 
   return (
-    <section>
+    <section className="text-zinc-400">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -82,20 +87,20 @@ export default function Blog({ params }) {
           }),
         }}
       />
-      <h1 className="title font-semibold text-lg tracking-tighter">
+      <h1 className="title font-semibold text-2xl tracking-tighter text-white">
         {post.metadata.title}
       </h1>
-      <div className="flex items-center gap-2 mt-2 mb-8 text-sm text-neutral-600 dark:text-neutral-400">
+      <div className="flex items-center gap-2 mt-2 mb-8 text-sm">
         <span>{formatDate(post.metadata.publishedAt)}</span>
         {post.metadata.readingTime && (
           <>
-            <span className="text-neutral-300 dark:text-neutral-700">|</span>
+            <span className="text-zinc-600">|</span>
             <span>{post.metadata.readingTime}</span>
           </>
         )}
       </div>
-      <article className="prose">
-        <CustomMDX source={post.content} />
+      <article className="prose text-zinc-400 prose-headings:text-white prose-strong:text-white max-w-none">
+        <CustomMDX source={post.content} components={{ Highlight }} />
       </article>
     </section>
   );

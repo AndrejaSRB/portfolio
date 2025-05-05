@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 ::selection {
   background-color: #47a3f3;
@@ -53,7 +53,7 @@ html {
 
 .prose .anchor:after {
   @apply text-neutral-300 dark:text-neutral-700;
-  content: '#';
+  content: "#";
 }
 
 .prose *:hover > .anchor {
@@ -81,6 +81,28 @@ html {
 .prose img {
   /* Don't apply styles to next/image */
   @apply m-0;
+}
+
+/* Custom blog styles */
+.text-zinc-400 .prose p {
+  @apply my-4 text-zinc-400;
+}
+
+.text-zinc-400 .prose h1,
+.text-zinc-400 .prose h2,
+.text-zinc-400 .prose h3,
+.text-zinc-400 .prose h4,
+.text-zinc-400 .prose h5,
+.text-zinc-400 .prose h6 {
+  @apply text-white font-medium tracking-tight;
+}
+
+.text-zinc-400 .prose strong {
+  @apply font-medium text-white;
+}
+
+.text-zinc-400 .prose a {
+  @apply text-white underline transition-all decoration-zinc-500 underline-offset-2 decoration-[0.1em] hover:decoration-zinc-300;
 }
 
 .prose p {
@@ -131,8 +153,8 @@ pre {
 }
 
 /* Remove Safari input shadow on mobile */
-input[type='text'],
-input[type='email'] {
+input[type="text"],
+input[type="email"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
