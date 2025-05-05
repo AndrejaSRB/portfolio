@@ -6,6 +6,15 @@
 }
 
 :root {
+  --font-ibm-plex-sans: "IBM Plex Sans", sans-serif;
+}
+
+body,
+html {
+  font-family: var(--font-ibm-plex-sans);
+}
+
+:root {
   --sh-class: #2d5e9d;
   --sh-identifier: #354150;
   --sh-sign: #8996a3;

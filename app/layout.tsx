@@ -1,6 +1,6 @@
 import "./global.css";
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { IBM_Plex_Sans } from "next/font/google";
 import { Navbar } from "./components/nav";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -36,10 +36,11 @@ export const metadata: Metadata = {
   },
 };
 
-const manrope = Manrope({
+const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-manrope",
+  variable: "--font-ibm-plex-sans",
+  weight: ["500", "600", "700"],
 });
 
 export default function RootLayout({
@@ -52,7 +53,7 @@ export default function RootLayout({
       lang="en"
       className={cx(
         "text-black bg-white dark:text-white dark:bg-black",
-        manrope.variable
+        ibmPlexSans.variable
       )}
     >
       <body className="antialiased max-w-3xl mx-4 mt-8 lg:mx-auto font-sans">
