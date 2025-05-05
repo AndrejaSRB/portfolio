@@ -1,0 +1,251 @@
+---
+title: "My Journey from Web2 to Web3: A Frontend Developer's Perspective"
+publishedAt: "2025-05-05"
+summary: "Explore my transition from traditional frontend development to the blockchain ecosystem, and the evolution of Web3 development tools since 2021."
+readingTime: "10 minutes"
+---
+
+## Introduction
+
+When I first stepped into Web3 development in 2021, I was unprepared for how fundamentally different it would be from traditional frontend work. Coming from the polished, instantaneous world of Web2, the blockchain ecosystem presented unique challenges that forced me to rethink my approach to user experience, state management, and even the concept of "users" themselves. This post chronicles my journey, the evolution of tools in the space, and what aspiring Web3 developers should know before diving in.
+
+## The Initial Culture Shock: Web3 UX Circa 2021
+
+### Slow Interactions vs. Instant Gratification
+
+In Web2, users expect millisecond response times. Click a button, see a result—immediately. My first shock in Web3 was dealing with blockchain confirmation times that could stretch from seconds to minutes. During the NFT boom of 2021, I quickly discovered that a "Send" button might trigger a 30+ second waiting period before anything happened.
+
+Back then, I had to not only learn web3.js but also dive into viem for more advanced interactions—there was no wagmi to simplify these processes like we have today. It was diving into the deep end of blockchain interaction:
+
+```javascript
+// Early days with web3.js - clunky transaction handling
+web3.eth
+  .sendTransaction({
+    from: accounts[0],
+    to: contractAddress,
+    value: web3.utils.toWei("0.1", "ether"),
+    data: contract.methods.mint(tokenId).encodeABI(),
+  })
+  .on("transactionHash", (hash) => {
+    // Show "Transaction submitted" state
+    console.log(`Transaction sent: ${hash}`);
+  })
+  .on("receipt", (receipt) => {
+    // Show "Transaction confirmed" state
+    console.log(`Transaction confirmed in block ${receipt.blockNumber}`);
+  })
+  .on("error", (error) => {
+    // Handle error state
+    console.error("Transaction failed:", error);
+  });
+```
+
+Managing these loading states and keeping users engaged became my first major challenge. NFT enthusiasts in 2021 were willing to endure this friction, but onboarding regular users? Nearly impossible.
+
+### Authentication Without Email and Passwords
+
+The concept of "Connect Wallet" replacing traditional login forms was another paradigm shift. I remember implementing my first MetaMask connection:
+
+```javascript
+// Early MetaMask connection
+if (window.ethereum) {
+  try {
+    const accounts = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    });
+    setAddress(accounts[0]);
+    // User connected!
+  } catch (error) {
+    console.error("User denied wallet connection");
+  }
+}
+```
+
+Explaining to users that their wallet _was_ their account, that they needed to safeguard a seed phrase instead of resetting a password, and that transactions cost gas fees—these were foreign concepts requiring extensive UI education.
+
+## Evolution of Tools: From Web3.js to Wagmi
+
+### Web3.js Days: Manual and Verbose
+
+My early projects used web3.js, which required manually managing connections, writing verbose transaction code, and setting up event listeners. Error handling was particularly painful:
+
+```javascript
+// The old way with web3.js
+contract.events
+  .Transfer({})
+  .on("data", (event) => {
+    // Handle transfer event
+  })
+  .on("error", console.error);
+```
+
+While web3.js is now in sunset, it was a crucial stepping stone in my development journey and taught me the fundamentals of blockchain interaction.
+
+### The Ethers.js Improvement
+
+As I moved toward building Web3 games where NFTs could perform actions, I needed more reliable event handling. Ethers.js provided a cleaner API:
+
+```javascript
+// Ethers.js improvement
+const filter = contract.filters.Transfer();
+contract.on(filter, (from, to, amount, event) => {
+  // More structured event handling
+});
+```
+
+### TheGraph: The Missing Data Layer
+
+For more complex applications, querying historical data directly from the blockchain became impractical. TheGraph introduced the concept of indexed blockchain data:
+
+```javascript
+// Using TheGraph for data querying
+const GET_USER_NFTS = gql`
+  query GetUserNFTs($address: String!) {
+    tokens(where: { owner: $address }) {
+      id
+      tokenURI
+      lastTransferredAt
+    }
+  }
+`;
+```
+
+### Wagmi: The Modern Standard
+
+Today, wagmi has dramatically simplified Web3 frontend development with its React hooks:
+
+```javascript
+// Modern approach with latest wagmi version
+import {
+  useAccount,
+  useConnect,
+  useWriteContract,
+  useWaitForTransactionReceipt,
+} from "wagmi";
+
+// Connection
+const { connect, connectors } = useConnect();
+const { isConnected, address } = useAccount();
+
+// Contract interaction with updated hook
+const { data: hash, isPending, writeContract } = useWriteContract();
+
+// Transaction receipt tracking
+const { isLoading: isConfirming, isSuccess: isConfirmed } =
+  useWaitForTransactionReceipt({ hash });
+
+// Simple button onClick handler
+const handleMint = () =>
+  writeContract({
+    address: contractAddress,
+    abi: contractABI,
+    functionName: "mint",
+    args: [tokenId],
+  });
+```
+
+The difference is night and day. What used to require dozens of lines of code and manual state management is now handled with pre-built hooks that manage connections, transactions, and contract interactions.
+
+## Today's Web3 Frontend Landscape
+
+### Closing the UX Gap
+
+The Web3 experience has dramatically improved since 2021. We now have:
+
+1. **Better wallet solutions** with improved onboarding flows
+2. **Transaction simulation** to preview outcomes before paying gas
+3. **Optimistic UI updates** that assume success while waiting for confirmation
+4. **Progressive disclosure** of blockchain complexity
+
+### Recommended Stack for New Web3 Frontend Developers
+
+For developers entering Web3 today, here's my recommended stack:
+
+- **Framework**: Next.js or Vite with TypeScript
+- **Blockchain Interaction**: Wagmi + ethers.js (with some understanding of viem)
+- **Wallet Connections**: Web3Modal, RainbowKit, or ConnectKit
+- **Testing**: Vitest/MSW for frontend, Hardhat for contract interactions
+
+```javascript
+// Example of modern Web3 setup with Next.js and wagmi
+import { WagmiConfig, createConfig } from "wagmi";
+import { mainnet, polygon, optimism } from "wagmi/chains";
+import { ConnectKitProvider, getDefaultConfig } from "connectkit";
+
+const config = createConfig(
+  getDefaultConfig({
+    appName: "My Web3 App",
+    alchemyId: process.env.ALCHEMY_API_KEY,
+    chains: [mainnet, polygon, optimism],
+  })
+);
+
+export default function App({ Component, pageProps }) {
+  return (
+    <WagmiConfig config={config}>
+      <ConnectKitProvider>
+        <Component {...pageProps} />
+      </ConnectKitProvider>
+    </WagmiConfig>
+  );
+}
+```
+
+## Persistent Pain Points
+
+Despite improvements, several challenges remain:
+
+### User Onboarding
+
+Explaining wallets, gas fees, and chain selection still creates friction. The best apps use progressive disclosure and abstract complexity where possible.
+
+### Testing Contract Interactions
+
+Testing remains complex, though tools like Hardhat's local network and forked mainnet environments help simulate real blockchain conditions:
+
+```javascript
+// Testing contract interactions with Hardhat
+describe("Minting NFT", () => {
+  it("should mint an NFT to the caller", async () => {
+    // Set up the test environment
+    await network.provider.request({
+      method: "hardhat_impersonateAccount",
+      params: [userAddress],
+    });
+
+    const signer = await ethers.getSigner(userAddress);
+    const balanceBefore = await nftContract.balanceOf(userAddress);
+
+    // Execute the test transaction
+    await nftContract.connect(signer).mint();
+
+    // Verify the result
+    const balanceAfter = await nftContract.balanceOf(userAddress);
+    expect(balanceAfter).to.equal(balanceBefore.add(1));
+  });
+});
+```
+
+## Would I Go Back to Web2?
+
+After four years in Web3, I've learned more than I could have imagined. The community has introduced me to brilliant minds pushing the boundaries of what's possible on the internet. Web3 has fundamentally changed how I think about frontend responsibility—from merely displaying data to facilitating true digital ownership and peer-to-peer interaction.
+
+Web3 development isn't for everyone. If you crave stability and mature development patterns, you might find the ecosystem's rapid evolution frustrating. But for those excited by solving novel problems and building the future of digital interaction, there's no more exciting space to work in.
+
+**Web3 frontend development is perfect for those who:**
+
+- Enjoy working at the cutting edge of technology
+- Can tolerate ambiguity and evolving best practices
+- Are passionate about user sovereignty and ownership
+
+## Useful Resources for Web3 Frontend Developers
+
+- [Wagmi Documentation](https://wagmi.sh) – The best React hooks library for Ethereum
+- [RainbowKit](https://www.rainbowkit.com) – A beautiful wallet UI kit built on top of Wagmi
+- [Viem](https://viem.sh) – A modern, type-safe Ethereum client used under the hood by Wagmi
+- [Solana Wallet Adapter](https://solana-labs.github.io/wallet-adapter) – The go-to library for integrating Solana wallets in React
+- [Etherscan](https://etherscan.io/) – Essential for inspecting and debugging Ethereum transactions
+- [React Documentation](https://react.dev/) – The foundation for building modern Web2 and Web3 frontends
+- [Next.js Documentation](https://nextjs.org/docs) – A powerful React framework for building fast, scalable apps
+
+The journey from Web2 to Web3 continues to challenge and reward me daily. As the technology matures and abstractions improve, I'm excited to see how we can bring the benefits of decentralization to the next billion users—one frontend component at a time.
