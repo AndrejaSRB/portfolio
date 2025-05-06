@@ -9,28 +9,10 @@ type Project = {
 export function Projects() {
   const projects: Project[] = [
     {
-      title: "neural-canvas",
+      title: "traceguard",
       description:
-        "A deep learning framework for generating art using state-of-the-art neural style transfer algorithms",
-      link: "https://github.com/username/neural-canvas",
-    },
-    {
-      title: "quantum-sim",
-      description:
-        "Quantum computing simulator with visual interface for designing and testing quantum algorithms",
-      link: "https://github.com/username/quantum-sim",
-    },
-    {
-      title: "eco-tracker",
-      description:
-        "Mobile app for tracking personal carbon footprint with actionable recommendations for reducing environmental impact",
-      link: "https://github.com/username/eco-tracker",
-    },
-    {
-      title: "melody-forge",
-      description:
-        "AI-powered music composition tool that assists musicians in creating unique melodies and chord progressions",
-      link: "https://github.com/username/melody-forge",
+        "A developer tool for monitoring all RPC requests with human-readable error decoding, smart contract insights, and full trace visibility across EVM chains.",
+      link: "https://traceguard-landing.vercel.app/",
     },
   ];
 
