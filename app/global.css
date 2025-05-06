@@ -15,23 +15,32 @@ html {
 }
 
 :root {
-  --sh-class: #2d5e9d;
+  --sh-class: #4d87c7;
   --sh-identifier: #354150;
   --sh-sign: #8996a3;
   --sh-string: #007f7a;
   --sh-keyword: #e02518;
   --sh-comment: #a19595;
   --sh-jsxliterals: #6266d1;
-  --sh-property: #e25a1c;
-  --sh-entity: #e25a1c;
+  --sh-property: #ff6b35;
+  --sh-entity: #ff6b35;
+  --sh-function: #e67e22;
+  --sh-number: #2ecc71;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --sh-class: #4c97f8;
-    --sh-identifier: white;
-    --sh-keyword: #f47067;
-    --sh-string: #0fa295;
+    --sh-class: #7fb3ff; /* softened blue */
+    --sh-identifier: #e4e4e7; /* zinc-200 */
+    --sh-sign: #6b7280; /* gray-500, subtle ops */
+    --sh-string: #6ee7b7; /* soft green (tailwind emerald-300) */
+    --sh-keyword: #f472b6; /* tailwind pink-400 */
+    --sh-comment: #52525b; /* zinc-600, calm gray */
+    --sh-jsxliterals: #c4b5fd; /* indigo-300 */
+    --sh-property: #fbbf24; /* amber-400 */
+    --sh-entity: #fbbf24; /* same as property */
+    --sh-function: #facc15; /* yellow-300 */
+    --sh-number: #4ade80; /* green-400 */
   }
   html {
     color-scheme: dark;
@@ -70,7 +79,7 @@ html {
 }
 
 .prose pre {
-  @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-900 py-2 px-3 text-sm;
+  @apply text-zinc-100 bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-800 py-2 px-3 text-sm my-2;
 }
 
 .prose code {
@@ -178,4 +187,25 @@ table {
 
 .title {
   text-wrap: balance;
+}
+
+/* Additional syntax highlighting customizations */
+/* For function calls like sendTransaction */
+.sh-method {
+  color: var(--sh-function);
+}
+
+/* For numbers like [0] and block numbers */
+.sh-numeric {
+  color: var(--sh-number);
+}
+
+/* For transaction parameters */
+.sh-param {
+  color: var(--sh-property);
+}
+
+/* For web3.js methods */
+.sh-object {
+  color: var(--sh-class);
 }
