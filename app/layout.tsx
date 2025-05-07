@@ -51,12 +51,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cx(
-        "text-black bg-white dark:text-white dark:bg-black",
-        ibmPlexSans.variable
-      )}
+      className={cx("text-white bg-[#0f0e0d]", ibmPlexSans.variable)}
     >
-      <body className="antialiased max-w-3xl mx-4 mt-8 lg:mx-auto font-sans">
+      <body className="antialiased max-w-3xl mx-auto w-full px-4 lg:px-0 mt-8 lg:mx-auto font-sans">
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
           <Navbar />
           {children}

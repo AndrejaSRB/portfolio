@@ -18,7 +18,7 @@ export function BlogPosts() {
         .map((post) => (
           <Link
             key={post.slug}
-            className="w-full p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 relative group transition-colors bg-neutral-900 hover:bg-neutral-800/80"
+            className="w-full p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 relative group transition-colors bg-[#292524]/30 hover:bg-[#292524]/50"
             href={`/blog/${post.slug}`}
           >
             <div className="absolute top-4 right-4 text-neutral-400 group-hover:text-neutral-700 dark:group-hover:text-neutral-300 transition-colors">

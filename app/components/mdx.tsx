@@ -2,7 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
-import React from "react";
+import remarkGfm from "remark-gfm";
+import { createElement } from "react";
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -58,6 +59,15 @@ function HighlightedText({ children }) {
   return <span className="text-white font-medium">{children}</span>;
 }
 
+// Blockquote component for personal anecdotes and quotes
+function BlockQuote({ children }) {
+  return (
+    <blockquote className="border-l-4 border-zinc-300 dark:border-[#b91c1c] pl-4 my-4 italic text-zinc-700 dark:text-zinc-300 text-base lg:text-lg bg-[#292524]/30 py-4">
+      {children}
+    </blockquote>
+  );
+}
+
 function slugify(str) {
   return str
     .toString()
@@ -72,11 +82,11 @@ function slugify(str) {
 function createHeading(level) {
   const Heading = ({ children }) => {
     let slug = slugify(children);
-    return React.createElement(
+    return createElement(
       `h${level}`,
       { id: slug, className: "text-white" },
       [
-        React.createElement("a", {
+        createElement("a", {
           href: `#${slug}`,
           key: `link-${slug}`,
           className: "anchor",
@@ -103,6 +113,7 @@ let components = {
   code: Code,
   Table,
   HighlightedText,
+  blockquote: BlockQuote,
 };
 
 export function CustomMDX(props) {
@@ -110,6 +121,11 @@ export function CustomMDX(props) {
     <MDXRemote
       {...props}
       components={{ ...components, ...(props.components || {}) }}
+      options={{
+        mdxOptions: {
+          remarkPlugins: [remarkGfm],
+        },
+      }}
     />
   );
 }

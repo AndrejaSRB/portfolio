@@ -39,7 +39,7 @@ export function Navbar() {
               href="https://x.com/0xAndreja"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-neutral-400 transition-colors duration-300"
+              className="text-white hover:text-[#b91c1c] transition-colors duration-300"
               aria-label="X profile"
             >
               <FaXTwitter size={20} />
@@ -48,7 +48,7 @@ export function Navbar() {
               href="https://www.linkedin.com/in/andreja-kojadinovic/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-neutral-400 transition-colors duration-300"
+              className="text-white hover:text-[#b91c1c] transition-colors duration-300"
               aria-label="LinkedIn profile"
             >
               <FaLinkedin size={20} />

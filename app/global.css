@@ -7,6 +7,38 @@
 
 :root {
   --font-ibm-plex-sans: "IBM Plex Sans", sans-serif;
+
+  /* Theme Colors */
+  --background: #1c1917;
+  --foreground: #f5f5f4;
+  --primary: #b91c1c;
+  --primary-foreground: #faf7f5;
+
+  /* Secondary & Accent Colors */
+  --secondary: #92400e;
+  --secondary-foreground: #fef3c7;
+  --accent: #b45309;
+  --accent-foreground: #fef3c7;
+
+  /* UI Component Colors */
+  --card: #292524;
+  --card-foreground: #f5f5f4;
+  --popover: #292524;
+  --popover-foreground: #f5f5f4;
+  --muted: #292524;
+  --muted-foreground: #d6d3d1;
+
+  /* Utility & Form Colors */
+  --border: #44403c;
+  --input: #44403c;
+  --ring: #b91c1c;
+
+  /* Status Colors */
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  /* Radius */
+  --radius: 0.375rem;
 }
 
 body,
@@ -41,6 +73,23 @@ html {
     --sh-entity: #fbbf24; /* same as property */
     --sh-function: #facc15; /* yellow-300 */
     --sh-number: #4ade80; /* green-400 */
+
+    /* UI Component Colors */
+    --card: #292524;
+    --card-foreground: #f5f5f4;
+    --popover: #292524;
+    --popover-foreground: #f5f5f4;
+    --muted: #292524;
+    --muted-foreground: #d6d3d1;
+
+    /* Utility & Form Colors */
+    --border: #44403c;
+    --input: #44403c;
+    --ring: #b91c1c;
+
+    /* Status Colors */
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
   }
   html {
     color-scheme: dark;
@@ -79,7 +128,7 @@ html {
 }
 
 .prose pre {
-  @apply text-zinc-100 bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-800 py-2 px-3 text-sm my-2;
+  @apply text-zinc-100 bg-neutral-50 dark:bg-[#292524]/30 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-800 py-2 px-3 text-sm my-2;
 }
 
 .prose code {
@@ -104,6 +153,10 @@ html {
 /* Custom blog styles */
 .text-zinc-400 .prose p {
   @apply my-4 text-zinc-400;
+}
+
+.text-zinc-400 .prose blockquote p {
+  @apply my-0;
 }
 
 .text-zinc-400 .prose h1,
@@ -151,8 +204,24 @@ html {
   @apply list-disc pl-6;
 }
 
+.prose ul li::marker {
+  @apply text-[#b91c1c];
+}
+
+.text-zinc-400 .prose ul li::marker {
+  @apply text-[#b91c1c];
+}
+
 .prose ol {
   @apply list-decimal pl-6;
+}
+
+.prose ol li::marker {
+  @apply text-white;
+}
+
+.text-zinc-400 .prose ol li::marker {
+  @apply text-white;
 }
 
 .prose > :first-child {
@@ -183,6 +252,41 @@ table {
   max-width: fit-content;
   overflow-x: auto;
   white-space: nowrap;
+  @apply my-6 border border-neutral-300 dark:border-neutral-700 rounded-lg;
+}
+
+/* Add table styling to match theme */
+th {
+  @apply px-4 py-3 text-left text-sm font-medium text-neutral-800 dark:text-white bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-300 dark:border-neutral-700 border-r border-r-neutral-300 dark:border-r-neutral-700;
+}
+
+th:last-child {
+  @apply border-r-0;
+}
+
+td {
+  @apply px-4 py-2 text-sm text-neutral-700 dark:text-neutral-300 border-b border-neutral-200 dark:border-neutral-800 border-r border-r-neutral-200 dark:border-r-neutral-800;
+}
+
+td:last-child {
+  @apply border-r-0;
+}
+
+tr:last-child td {
+  @apply border-b-0;
+}
+
+/* Dark mode specific table styling */
+.text-zinc-400 table {
+  @apply border-zinc-800;
+}
+
+.text-zinc-400 th {
+  @apply text-white bg-zinc-900 border-zinc-800;
+}
+
+.text-zinc-400 td {
+  @apply text-zinc-400 border-zinc-800;
 }
 
 .title {
@@ -208,4 +312,21 @@ table {
 /* For web3.js methods */
 .sh-object {
   color: var(--sh-class);
+}
+
+/* Margins for paragraphs inside definition lists */
+dd p,
+dt p {
+  @apply my-1.5; /* 4px margin using Tailwind's my-1.5 */
+}
+
+/* More specific selectors to override .text-zinc-400 .prose p */
+.prose dd p,
+.prose dt p {
+  @apply !my-1.5;
+}
+
+.text-zinc-400 .prose dd p,
+.text-zinc-400 .prose dt p {
+  @apply !my-1.5;
 }

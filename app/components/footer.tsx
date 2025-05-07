@@ -21,7 +21,7 @@ export default function Footer() {
       <div className="flex flex-col lg:flex-row lg:justify-between">
         <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-6 mb-6 lg:mb-0">
           <a
-            className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-neutral-100 transition-colors"
+            className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-[#b91c1c] transition-colors"
             href="https://github.com/AndrejaSRB"
             target="_blank"
             rel="noopener noreferrer"
@@ -29,7 +29,7 @@ export default function Footer() {
             Github
           </a>
           <a
-            className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-neutral-100 transition-colors"
+            className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-[#b91c1c] transition-colors"
             href="https://www.linkedin.com/in/andreja-kojadinovic/"
             target="_blank"
             rel="noopener noreferrer"
@@ -37,7 +37,7 @@ export default function Footer() {
             LinkedIn
           </a>
           <a
-            className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-neutral-100 transition-colors"
+            className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-[#b91c1c] transition-colors"
             href="mailto:andreja.kojadinovic@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
