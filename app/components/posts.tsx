@@ -21,7 +21,7 @@ export function BlogPosts() {
             className="w-full p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 relative group transition-colors bg-[#292524]/30 hover:bg-[#292524]/50"
             href={`/blog/${post.slug}`}
           >
-            <div className="absolute top-4 right-4 text-neutral-400 group-hover:text-neutral-700 dark:group-hover:text-neutral-300 transition-colors">
+            <div className="absolute top-4 right-4 transition-colors text-neutral-400 group-hover:text-neutral-700 dark:group-hover:text-neutral-300">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -36,10 +36,10 @@ export function BlogPosts() {
                 <path d="M7 17l9.2-9.2M17 17V7H7" />
               </svg>
             </div>
-            <h2 className="font-medium text-xl text-neutral-900 dark:text-neutral-100 tracking-tight pr-8">
+            <h2 className="pr-8 text-xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
               {post.metadata.title}
             </h2>
-            <div className="flex items-center gap-2 mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+            <div className="flex gap-2 items-center mt-2 text-sm text-neutral-600 dark:text-neutral-400">
               <span>{formatDate(post.metadata.publishedAt, false)}</span>
               {post.metadata.readingTime && (
                 <>

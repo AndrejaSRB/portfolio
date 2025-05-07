@@ -56,13 +56,13 @@ function Code({ children, ...props }) {
 
 // Component to highlight text in white against the zinc background
 function HighlightedText({ children }) {
-  return <span className="text-white font-medium">{children}</span>;
+  return <span className="font-medium text-white">{children}</span>;
 }
 
 // Blockquote component for personal anecdotes and quotes
 function BlockQuote({ children }) {
   return (
-    <blockquote className="border-l-4 border-zinc-300 dark:border-[#b91c1c] pl-4 my-4 italic text-zinc-700 dark:text-zinc-300 text-base lg:text-lg bg-[#292524]/30 py-4">
+    <blockquote className="border-l-4 border-zinc-300 dark:border-[#b91c1c] pl-4 my-4 italic text-zinc-700 dark:text-zinc-300 text-base lg:text-lg bg-[#292524]/30 py-4 pr-4">
       {children}
     </blockquote>
   );
