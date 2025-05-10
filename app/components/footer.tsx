@@ -1,15 +1,18 @@
-import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
-import { FaXTwitter } from 'react-icons/fa6';
+import Link from "next/link";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
   return (
     <footer className="mb-16 mt-8">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Andreja{' '}
-            <span className="hidden md:inline">Kojadinovic</span>
-          </p>
+          <Link href="/">
+            <p className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} Andreja{" "}
+              <span className="hidden md:inline">Kojadinovic</span>
+            </p>
+          </Link>
         </div>
         <div className="flex space-x-4">
           <a
@@ -29,15 +32,6 @@ export default function Footer() {
             className="text-muted-foreground hover:text-primary transition-colors"
           >
             <FaLinkedin size={20} />
-          </a>
-          <a
-            href="mailto:andreja.kojadinovic@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Email"
-            className="text-muted-foreground hover:text-primary transition-colors"
-          >
-            <FaEnvelope size={20} />
           </a>
           <a
             href="https://github.com/AndrejaSRB"

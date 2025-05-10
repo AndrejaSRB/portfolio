@@ -1,8 +1,8 @@
 ---
-title: 'Bridging the Frontend: My Path from Web2 to Web3'
-publishedAt: '2025-05-05'
-summary: 'Explore my transition from traditional frontend development to the blockchain ecosystem, and the evolution of Web3 development tools since 2021.'
-readingTime: '4 min'
+title: "Bridging the Frontend: My Path from Web2 to Web3"
+publishedAt: "2025-05-05"
+summary: "Explore my transition from traditional frontend development to the blockchain ecosystem, and the evolution of Web3 development tools since 2021."
+readingTime: "4 min"
 ---
 
 When I first stepped into <HighlightedText>Web3 development in 2021</HighlightedText> (Web3 in short: the vision of a decentralized internet built on blockchain technology), I was unprepared for how fundamentally different it would be from traditional frontend work. Coming from the polished, instantaneous world of Web2, the blockchain ecosystem presented unique challenges that forced me to rethink my approach to user experience, state management, and even the concept of "users" themselves.
@@ -17,37 +17,39 @@ Before diving into my story, here are a few Web3 terms to help you follow along:
   <dl className="space-y-1">
     <dt className="font-bold text-base text-neutral-200">Blockchain</dt>
     <dd className="ml-2 text-sm">
-      A decentralized, immutable ledger that securely records transactions across a network of
-      computers.
+      A decentralized, immutable ledger that securely records transactions
+      across a network of computers.
     </dd>
     <dt className="font-bold text-base text-neutral-200">Wallet</dt>
     <dd className="ml-2 text-sm">
-      Software or hardware that manages private and public keys to interact with blockchains, like
-      sending tokens or signing transactions.
+      Software or hardware that manages private and public keys to interact with
+      blockchains, like sending tokens or signing transactions.
     </dd>
     <dt className="font-bold text-base text-neutral-200">Transaction Fees</dt>
     <dd className="ml-2 text-sm">
-      Costs paid in cryptocurrency to process actions on blockchain networks, such as gas fees on
-      Ethereum or tiny fees on Solana.
+      Costs paid in cryptocurrency to process actions on blockchain networks,
+      such as gas fees on Ethereum or tiny fees on Solana.
     </dd>
     <dt className="font-bold text-base text-neutral-200">Smart Contract</dt>
     <dd className="ml-2 text-sm">
-      Code on a blockchain that automatically executes actions when predefined conditions are met,
-      like transferring tokens.
+      Code on a blockchain that automatically executes actions when predefined
+      conditions are met, like transferring tokens.
     </dd>
     <dt className="font-bold text-base text-neutral-200">Seed Phrase</dt>
     <dd className="ml-2 text-sm">
-      A secret sequence of words used to recover your wallet and funds—never share it!
+      A secret sequence of words used to recover your wallet and funds—never
+      share it!
     </dd>
     <dt className="font-bold text-base text-neutral-200">dApp</dt>
     <dd className="ml-2 text-sm">
-      A decentralized application running on a blockchain, combining a frontend with smart
-      contracts, like an NFT marketplace.
+      A decentralized application running on a blockchain, combining a frontend
+      with smart contracts, like an NFT marketplace.
     </dd>
     <dt className="font-bold text-base text-neutral-200">NFT</dt>
     <dd className="ml-2 text-sm">
-      Non-Fungible Token: A unique digital asset stored on a blockchain that represents ownership of
-      a specific item or content, unlike cryptocurrencies which are identical and interchangeable.
+      Non-Fungible Token: A unique digital asset stored on a blockchain that
+      represents ownership of a specific item or content, unlike
+      cryptocurrencies which are identical and interchangeable.
     </dd>
   </dl>
 </div>
@@ -91,12 +93,12 @@ The concept of <HighlightedText>"Connect Wallet" replacing traditional login for
 if (window.ethereum) {
   try {
     const accounts = await window.ethereum.request({
-      method: 'eth_requestAccounts',
+      method: "eth_requestAccounts",
     });
     setAddress(accounts[0]);
     // User connected!
   } catch (error) {
-    console.error('User denied wallet connection');
+    console.error("User denied wallet connection");
   }
 }
 ```
@@ -113,10 +115,10 @@ My early projects used web3.js, which required manually managing connections and
 // The old way with web3.js
 contract.events
   .Transfer({})
-  .on('data', event => {
+  .on("data", (event) => {
     // Handle transfer event
   })
-  .on('error', console.error);
+  .on("error", console.error);
 ```
 
 While web3.js is now fading, <HighlightedText>it taught me the basics of blockchain interaction</HighlightedText>.
@@ -156,7 +158,12 @@ Today, <HighlightedText>wagmi has transformed Web3 frontend development</Highlig
 
 ```javascript
 // Modern approach with latest wagmi version
-import { useAccount, useConnect, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
+import {
+  useAccount,
+  useConnect,
+  useWaitForTransactionReceipt,
+  useWriteContract,
+} from "wagmi";
 
 // Connection
 const { connect, connectors } = useConnect();
@@ -166,14 +173,15 @@ const { isConnected, address } = useAccount();
 const { data: hash, isPending, writeContract } = useWriteContract();
 
 // Transaction receipt tracking
-const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash });
+const { isLoading: isConfirming, isSuccess: isConfirmed } =
+  useWaitForTransactionReceipt({ hash });
 
 // Simple button onClick handler
 const handleMint = () =>
   writeContract({
     address: contractAddress,
     abi: contractABI,
-    functionName: 'mint',
+    functionName: "mint",
     args: [tokenId],
   });
 ```
@@ -212,16 +220,16 @@ For those starting today, <HighlightedText>here's my go-to stack</HighlightedTex
 
 ```javascript
 // Modern Web3 setup with Next.js and RainbowKit
-import { RainbowKitProvider, getDefaultConfig } from '@rainbow-me/rainbowkit';
-import '@rainbow-me/rainbowkit/styles.css';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { WagmiProvider } from 'wagmi';
-import { mainnet, optimism, polygon } from 'wagmi/chains';
+import { RainbowKitProvider, getDefaultConfig } from "@rainbow-me/rainbowkit";
+import "@rainbow-me/rainbowkit/styles.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { WagmiProvider } from "wagmi";
+import { mainnet, optimism, polygon } from "wagmi/chains";
 
 const config = createConfig(
   getDefaultConfig({
-    appName: 'My Web3 App',
-    projectId: 'YOUR_PROJECT_ID',
+    appName: "My Web3 App",
+    projectId: "YOUR_PROJECT_ID",
     chains: [mainnet, polygon, optimism],
   })
 );

@@ -1,6 +1,6 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import { type Project } from '@/types/project';
+import { type Project } from "@/types/project";
 
 const ProjectCard = ({ project }: { project: Project }) => (
   <Link
@@ -10,7 +10,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
     rel="noopener noreferrer"
     className="block rounded-lgrelative group transition-colors"
   >
-    <h2 className="font-medium text-lg text-white tracking-tight  group-hover:underline decoration-2 transition-all duration-300">
+    <h2 className="font-medium text-base lg:text-lg text-white tracking-tight  group-hover:underline decoration-2 transition-all duration-300">
       {project.title}
     </h2>
     <p className="mt-2 text-sm text-muted-foreground">{project.description}</p>
