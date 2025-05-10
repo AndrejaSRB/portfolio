@@ -1,42 +1,23 @@
-# Portfolio Blog Starter
+# Andreja Kojadinovic
 
-This is a porfolio site template complete with a blog. Includes:
+[![Made with Next.js](https://img.shields.io/badge/Made%20with-Next.js-black?logo=next.js&logoColor=white)](https://nextjs.org)
+[![Build Passing](https://img.shields.io/badge/build-passing-green)](https://shields.io/)
 
-- MDX and Markdown support
-- Optimized for SEO (sitemap, robots, JSON-LD schema)
-- RSS Feed
-- Dynamic OG images
-- Syntax highlighting
-- Tailwind v4
-- Vercel Speed Insights / Web Analytics
-- Geist font
+## Description
 
-## Demo
+This is my personal portfolio website, showcasing a selection of my projects and a blog where I write about topics that interest me.
 
-https://portfolio-blog-starter.vercel.app
+## Live version
 
-## How to Use
+[Next.js](https://nextjs.org/)
 
-You can choose from one of the following two methods to use this repository:
+## Tech Stack
 
-### One-Click Deploy
+- **Framework**: [Next.js](https://nextjs.org/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **UI Components**: [Shadcn UI](https://ui.shadcn.com/)
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+## Contact
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/blog&project-name=blog&repository-name=blog)
-
-### Clone and Deploy
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
-
-```bash
-pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/blog blog
-```
-
-Then, run Next.js in development mode:
-
-```bash
-pnpm dev
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/templates) ([Documentation](https://nextjs.org/docs/app/building-your-application/deploying)).
+Andreja - [@0xAndreja](https://twitter.com/0xAndreja)

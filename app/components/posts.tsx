@@ -1,24 +1,23 @@
-import Link from "next/link";
-import { formatDate, getBlogPosts } from "app/blog/utils";
+import Link from 'next/link';
+
+import { formatDate, getBlogPosts } from '../blog/utils';
 
 export function BlogPosts() {
-  let allBlogs = getBlogPosts();
+  const allBlogs = getBlogPosts();
 
   return (
     <div className="flex flex-col space-y-4">
       {allBlogs
         .sort((a, b) => {
-          if (
-            new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
-          ) {
+          if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
             return -1;
           }
           return 1;
         })
-        .map((post) => (
+        .map(post => (
           <Link
             key={post.slug}
-            className="w-full p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 relative group transition-colors bg-[#292524]/30 hover:bg-[#292524]/50"
+            className="w-full p-4 bg-card border rounded-md hover:border-primary/60 transition-all duration-300 hover:bg-background"
             href={`/blog/${post.slug}`}
           >
             <div className="absolute top-4 right-4 transition-colors text-neutral-400 group-hover:text-neutral-700 dark:group-hover:text-neutral-300">
@@ -36,16 +35,14 @@ export function BlogPosts() {
                 <path d="M7 17l9.2-9.2M17 17V7H7" />
               </svg>
             </div>
-            <h2 className="pr-8 text-xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
+            <h2 className="text-xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
               {post.metadata.title}
             </h2>
             <div className="flex gap-2 items-center mt-2 text-sm text-neutral-600 dark:text-neutral-400">
               <span>{formatDate(post.metadata.publishedAt, false)}</span>
               {post.metadata.readingTime && (
                 <>
-                  <span className="text-neutral-300 dark:text-neutral-700">
-                    |
-                  </span>
+                  <span className="text-neutral-300 dark:text-neutral-700">|</span>
                   <span>{post.metadata.readingTime}</span>
                 </>
               )}

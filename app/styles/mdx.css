@@ -1,0 +1,194 @@
+/* MDX Prose Styles */
+.prose .anchor {
+  @apply absolute invisible no-underline;
+  margin-left: -1em;
+  padding-right: 0.5em;
+  width: 80%;
+  max-width: 700px;
+  cursor: pointer;
+}
+
+.anchor:hover {
+  @apply visible;
+}
+
+.prose a {
+  @apply underline transition-all underline-offset-2 decoration-[0.1em];
+  text-decoration-color: var(--muted-foreground);
+}
+
+.prose a:hover {
+  text-decoration-color: var(--primary);
+}
+
+.prose .anchor:after {
+  color: var(--muted-foreground);
+  content: '#';
+}
+
+.prose *:hover > .anchor {
+  @apply visible;
+}
+
+.prose pre {
+  @apply rounded-lg overflow-x-auto border py-2 px-3 text-sm my-2;
+  background-color: var(--muted);
+  border-color: var(--border);
+  /* color for pre code is handled by sugar-high (var(--sh-identifier)) in globals.css */
+}
+
+.prose code {
+  /* For inline code */
+  @apply px-1 py-0.5 rounded-lg;
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+}
+
+.prose pre code {
+  @apply p-0;
+  border: initial;
+  line-height: 1.5;
+  background-color: transparent; /* Ensure no BG color from .prose code */
+  /* color for pre code is handled by sugar-high (var(--sh-identifier)) in globals.css */
+}
+
+.prose code span {
+  /* For non-syntax-highlighted spans or overrides */
+  @apply font-medium;
+}
+
+.prose img {
+  @apply m-0; /* Don't apply styles to next/image */
+}
+
+/* Styles for .text-zinc-400 contextual blocks */
+.text-zinc-400 .prose p {
+  @apply my-4;
+  color: var(--muted-foreground);
+}
+
+.text-zinc-400 .prose blockquote p {
+  @apply my-0;
+}
+
+.text-zinc-400 .prose h1,
+.text-zinc-400 .prose h2,
+.text-zinc-400 .prose h3,
+.text-zinc-400 .prose h4,
+.text-zinc-400 .prose h5,
+.text-zinc-400 .prose h6 {
+  @apply font-medium tracking-tight;
+  color: var(--foreground);
+}
+
+.text-zinc-400 .prose strong {
+  @apply font-medium;
+  color: var(--foreground);
+}
+
+.text-zinc-400 .prose a {
+  @apply underline transition-all underline-offset-2 decoration-[0.1em];
+  color: var(--foreground);
+  text-decoration-color: var(--muted-foreground);
+}
+
+.text-zinc-400 .prose a:hover {
+  text-decoration-color: var(--primary);
+}
+
+/* General Prose Styles */
+.prose p {
+  @apply my-4;
+  color: var(--foreground);
+}
+
+.prose h1 {
+  @apply text-4xl font-medium tracking-tight mt-6 mb-2;
+  color: var(--foreground);
+}
+
+.prose h2 {
+  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+  color: var(--foreground);
+}
+
+.prose h3 {
+  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+  color: var(--foreground);
+}
+
+.prose h4 {
+  @apply text-lg font-medium tracking-tight mt-6 mb-2;
+  color: var(--foreground);
+}
+
+.prose strong {
+  @apply font-medium;
+  color: var(--foreground);
+}
+
+.prose ul {
+  @apply list-disc pl-6;
+}
+
+.prose ul li::marker {
+  color: var(--primary);
+}
+
+.text-zinc-400 .prose ul li::marker {
+  color: var(--primary);
+}
+
+.prose ol {
+  @apply list-decimal pl-6;
+}
+
+.prose ol li::marker {
+  color: var(--foreground); /* Using foreground for numbered lists, or use --primary if preferred */
+}
+
+.text-zinc-400 .prose ol li::marker {
+  color: var(--foreground);
+}
+
+.prose > :first-child {
+  margin-top: 1.25em !important;
+  margin-bottom: 1.25em !important;
+}
+
+/* Table Styles for MDX */
+.prose table {
+  display: block;
+  max-width: fit-content;
+  overflow-x: auto;
+  white-space: nowrap;
+  @apply my-6 border rounded-lg;
+  border-color: var(--border);
+}
+
+.prose table th {
+  @apply px-4 py-3 text-left text-sm font-medium border-b border-r;
+  color: var(--card-foreground);
+  background-color: var(--muted);
+  border-bottom-color: var(--border);
+  border-right-color: var(--border);
+}
+
+.prose table th:last-child {
+  @apply border-r-0;
+}
+
+.prose table td {
+  @apply px-4 py-2 text-sm border-b border-r;
+  color: var(--foreground);
+  border-bottom-color: var(--border);
+  border-right-color: var(--border);
+}
+
+.prose table td:last-child {
+  @apply border-r-0;
+}
+
+.prose table tr:last-child td {
+  @apply border-b-0;
+}

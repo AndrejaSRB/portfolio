@@ -1,8 +1,8 @@
 ---
-title: "Bridging the Frontend: My Path from Web2 to Web3"
-publishedAt: "2025-05-05"
-summary: "Explore my transition from traditional frontend development to the blockchain ecosystem, and the evolution of Web3 development tools since 2021."
-readingTime: "3.5 min"
+title: 'Bridging the Frontend: My Path from Web2 to Web3'
+publishedAt: '2025-05-05'
+summary: 'Explore my transition from traditional frontend development to the blockchain ecosystem, and the evolution of Web3 development tools since 2021.'
+readingTime: '4 min'
 ---
 
 When I first stepped into <HighlightedText>Web3 development in 2021</HighlightedText> (Web3 in short: the vision of a decentralized internet built on blockchain technology), I was unprepared for how fundamentally different it would be from traditional frontend work. Coming from the polished, instantaneous world of Web2, the blockchain ecosystem presented unique challenges that forced me to rethink my approach to user experience, state management, and even the concept of "users" themselves.
@@ -17,39 +17,37 @@ Before diving into my story, here are a few Web3 terms to help you follow along:
   <dl className="space-y-1">
     <dt className="font-bold text-base text-neutral-200">Blockchain</dt>
     <dd className="ml-2 text-sm">
-      A decentralized, immutable ledger that securely records transactions
-      across a network of computers.
+      A decentralized, immutable ledger that securely records transactions across a network of
+      computers.
     </dd>
     <dt className="font-bold text-base text-neutral-200">Wallet</dt>
     <dd className="ml-2 text-sm">
-      Software or hardware that manages private and public keys to interact with
-      blockchains, like sending tokens or signing transactions.
+      Software or hardware that manages private and public keys to interact with blockchains, like
+      sending tokens or signing transactions.
     </dd>
     <dt className="font-bold text-base text-neutral-200">Transaction Fees</dt>
     <dd className="ml-2 text-sm">
-      Costs paid in cryptocurrency to process actions on blockchain networks,
-      such as gas fees on Ethereum or tiny fees on Solana.
+      Costs paid in cryptocurrency to process actions on blockchain networks, such as gas fees on
+      Ethereum or tiny fees on Solana.
     </dd>
     <dt className="font-bold text-base text-neutral-200">Smart Contract</dt>
     <dd className="ml-2 text-sm">
-      Code on a blockchain that automatically executes actions when predefined
-      conditions are met, like transferring tokens.
+      Code on a blockchain that automatically executes actions when predefined conditions are met,
+      like transferring tokens.
     </dd>
     <dt className="font-bold text-base text-neutral-200">Seed Phrase</dt>
     <dd className="ml-2 text-sm">
-      A secret sequence of words used to recover your wallet and funds—never
-      share it!
+      A secret sequence of words used to recover your wallet and funds—never share it!
     </dd>
     <dt className="font-bold text-base text-neutral-200">dApp</dt>
     <dd className="ml-2 text-sm">
-      A decentralized application running on a blockchain, combining a frontend
-      with smart contracts, like an NFT marketplace.
+      A decentralized application running on a blockchain, combining a frontend with smart
+      contracts, like an NFT marketplace.
     </dd>
     <dt className="font-bold text-base text-neutral-200">NFT</dt>
     <dd className="ml-2 text-sm">
-      Non-Fungible Token: A unique digital asset stored on a blockchain that
-      represents ownership of a specific item or content, unlike
-      cryptocurrencies which are identical and interchangeable.
+      Non-Fungible Token: A unique digital asset stored on a blockchain that represents ownership of
+      a specific item or content, unlike cryptocurrencies which are identical and interchangeable.
     </dd>
   </dl>
 </div>
@@ -64,7 +62,7 @@ In Web2, users expect millisecond response times. Click a button, see a result�
 
 Back then, I used [web3.js](https://x.com/0xAndreja/status/1880001694970601824) for blockchain interactions, which required verbose, event-based code to manage the entire transaction lifecycle. You'd need separate handlers for transaction submission, confirmation, and error states—often resulting in 20+ lines of code for a single transaction.
 
-<HighlightedText>Web3’s slow transaction times</HighlightedText>
+<HighlightedText>Web3's slow transaction times</HighlightedText>
 <HighlightedText>forced me to rethink</HighlightedText>
 <HighlightedText>frontend UX entirely.</HighlightedText>
 
@@ -93,12 +91,12 @@ The concept of <HighlightedText>"Connect Wallet" replacing traditional login for
 if (window.ethereum) {
   try {
     const accounts = await window.ethereum.request({
-      method: "eth_requestAccounts",
+      method: 'eth_requestAccounts',
     });
     setAddress(accounts[0]);
     // User connected!
   } catch (error) {
-    console.error("User denied wallet connection");
+    console.error('User denied wallet connection');
   }
 }
 ```
@@ -115,10 +113,10 @@ My early projects used web3.js, which required manually managing connections and
 // The old way with web3.js
 contract.events
   .Transfer({})
-  .on("data", (event) => {
+  .on('data', event => {
     // Handle transfer event
   })
-  .on("error", console.error);
+  .on('error', console.error);
 ```
 
 While web3.js is now fading, <HighlightedText>it taught me the basics of blockchain interaction</HighlightedText>.
@@ -158,12 +156,7 @@ Today, <HighlightedText>wagmi has transformed Web3 frontend development</Highlig
 
 ```javascript
 // Modern approach with latest wagmi version
-import {
-  useAccount,
-  useConnect,
-  useWriteContract,
-  useWaitForTransactionReceipt,
-} from "wagmi";
+import { useAccount, useConnect, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
 
 // Connection
 const { connect, connectors } = useConnect();
@@ -173,15 +166,14 @@ const { isConnected, address } = useAccount();
 const { data: hash, isPending, writeContract } = useWriteContract();
 
 // Transaction receipt tracking
-const { isLoading: isConfirming, isSuccess: isConfirmed } =
-  useWaitForTransactionReceipt({ hash });
+const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash });
 
 // Simple button onClick handler
 const handleMint = () =>
   writeContract({
     address: contractAddress,
     abi: contractABI,
-    functionName: "mint",
+    functionName: 'mint',
     args: [tokenId],
   });
 ```
@@ -208,7 +200,7 @@ These tool improvements, from web3.js to wagmi, have transformed my work, shapin
 
 ### Tackling Persistent Pain Points
 
-Explaining wallets, fees, and network choices still creates friction. I’ve mitigated this with step-by-step UI guides, like progress bars that clarify transaction stages, making Web3 feel more intuitive. <HighlightedText>Building interfaces that rival Web2’s simplicity while embracing Web3’s power remains my ongoing challenge.</HighlightedText>
+Explaining wallets, fees, and network choices still creates friction. I've mitigated this with step-by-step UI guides, like progress bars that clarify transaction stages, making Web3 feel more intuitive. <HighlightedText>Building interfaces that rival Web2's simplicity while embracing Web3's power remains my ongoing challenge.</HighlightedText>
 
 ### Recommended Stack for New Web3 Frontend Developers
 
@@ -220,16 +212,16 @@ For those starting today, <HighlightedText>here's my go-to stack</HighlightedTex
 
 ```javascript
 // Modern Web3 setup with Next.js and RainbowKit
-import "@rainbow-me/rainbowkit/styles.css";
-import { getDefaultConfig, RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import { WagmiProvider } from "wagmi";
-import { mainnet, polygon, optimism } from "wagmi/chains";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { RainbowKitProvider, getDefaultConfig } from '@rainbow-me/rainbowkit';
+import '@rainbow-me/rainbowkit/styles.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { WagmiProvider } from 'wagmi';
+import { mainnet, optimism, polygon } from 'wagmi/chains';
 
 const config = createConfig(
   getDefaultConfig({
-    appName: "My Web3 App",
-    projectId: "YOUR_PROJECT_ID",
+    appName: 'My Web3 App',
+    projectId: 'YOUR_PROJECT_ID',
     chains: [mainnet, polygon, optimism],
   })
 );
@@ -251,13 +243,13 @@ export default function App({ Component, pageProps }) {
 
 ## The Bigger Picture: Web3's Challenges and Future
 
-Web3’s potential to redefine the internet excites me, but complex UX and costs remain hurdles I’ve tackled in my own projects, like streamlining wallet interactions for smoother onboarding. Layer 2 solutions like <HighlightedText>Base</HighlightedText> and <HighlightedText>Optimism</HighlightedText>, plus <HighlightedText>Solana</HighlightedText>’s fast, cheap transactions, are closing the gap. Smart wallets and [one-click supertransactions](https://blog.biconomy.io/introduction-to-supertransactions/) simplify interactions. <HighlightedText>These advancements inspire me to build frontends that make Web3 feel as seamless as Web2 for users.</HighlightedText>
+Web3's potential to redefine the internet excites me, but complex UX and costs remain hurdles I've tackled in my own projects, like streamlining wallet interactions for smoother onboarding. Layer 2 solutions like <HighlightedText>Base</HighlightedText> and <HighlightedText>Optimism</HighlightedText>, plus <HighlightedText>Solana</HighlightedText>'s fast, cheap transactions, are closing the gap. Smart wallets and [one-click supertransactions](https://blog.biconomy.io/introduction-to-supertransactions/) simplify interactions. <HighlightedText>These advancements inspire me to build frontends that make Web3 feel as seamless as Web2 for users.</HighlightedText>
 
 > Web3 taught me to build frontends that empower users with true digital ownership.
 
 ## Would I Go Back to Web2?
 
-After four years in Web3, I've learned more than I could have imagined. A late-night Discord debug session with the wagmi community, fixing a tricky transaction bug, showed me the power of Web3’s collaborative spirit. This community has introduced me to brilliant minds pushing the boundaries of the internet. Web3 has <HighlightedText>changed how I think about frontend responsibility</HighlightedText>—from displaying data to enabling true digital ownership.
+After four years in Web3, I've learned more than I could have imagined. A late-night Discord debug session with the wagmi community, fixing a tricky transaction bug, showed me the power of Web3's collaborative spirit. This community has introduced me to brilliant minds pushing the boundaries of the internet. Web3 has <HighlightedText>changed how I think about frontend responsibility</HighlightedText>—from displaying data to enabling true digital ownership.
 
 Web3 isn't for everyone. If you prefer stable, mature tools, <HighlightedText>the ecosystem's rapid change</HighlightedText> can be overwhelming. But for those excited by new problems and shaping digital interaction, it's thrilling.
 

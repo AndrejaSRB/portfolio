@@ -1,29 +1,39 @@
 import { notFound } from "next/navigation";
-import { CustomMDX } from "app/components/mdx";
-import { formatDate, getBlogPosts } from "app/blog/utils";
-import { baseUrl } from "app/sitemap";
+
+import { Separator } from "@/components/ui/separator";
+
+import { baseUrl } from "../../sitemap";
+import { BlogCta } from "../components/blog-cta";
+import { CustomMDX } from "../components/mdx";
+import { formatDate, getBlogPosts } from "../utils";
+import { use } from "react";
 
 export async function generateStaticParams() {
-  let posts = getBlogPosts();
+  const posts = getBlogPosts();
 
   return posts.map((post) => ({
     slug: post.slug,
   }));
 }
 
-export function generateMetadata({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = getBlogPosts().find((post) => post.slug === slug);
   if (!post) {
     return;
   }
 
-  let {
+  const {
     title,
     publishedAt: publishedTime,
     summary: description,
     image,
   } = post.metadata;
-  let ogImage = image
+  const ogImage = image
     ? image
     : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
 
@@ -52,12 +62,17 @@ export function generateMetadata({ params }) {
 }
 
 // Helper function to highlight words in text
-const Highlight = ({ children }) => (
+const Highlight = ({ children }: { children: React.ReactNode }) => (
   <span className="text-white">{children}</span>
 );
 
-export default function Blog({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug);
+export default function Blog({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = use(params);
+  const post = getBlogPosts().find((post) => post.slug === slug);
 
   if (!post) {
     notFound();
@@ -102,6 +117,8 @@ export default function Blog({ params }) {
       <article className="prose text-zinc-400 prose-headings:text-white prose-strong:text-white max-w-none">
         <CustomMDX source={post.content} components={{ Highlight }} />
       </article>
+      <Separator className="mt-6 mb-4" />
+      <BlogCta />
     </section>
   );
 }

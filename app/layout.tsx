@@ -1,27 +1,28 @@
-import "./global.css";
-import type { Metadata } from "next";
-import { IBM_Plex_Sans } from "next/font/google";
-import { Navbar } from "./components/nav";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import Footer from "./components/footer";
-import { baseUrl } from "./sitemap";
-import cx from "./util/cx";
+import { IBM_Plex_Sans } from 'next/font/google';
+
+import type { Metadata } from 'next';
+
+import { ThemeProvider } from '@/app/components/theme/theme-provider';
+
+import Footer from './components/footer';
+import { Navbar } from './components/nav';
+import './globals.css';
+import { baseUrl } from './sitemap';
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Andreja Kojadinovic",
-    template: "%s | Andreja Kojadinovic",
+    default: 'Andreja Kojadinovic',
+    template: '%s | Andreja Kojadinovic',
   },
-  description: "This is my portfolio.",
+  description: 'This is my portfolio.',
   openGraph: {
-    title: "Andreja Kojadinovic",
-    description: "This is my portfolio.",
+    title: 'Andreja Kojadinovic',
+    description: 'This is my portfolio.',
     url: baseUrl,
-    siteName: "Andreja Kojadinovic",
-    locale: "en_US",
-    type: "website",
+    siteName: 'Andreja Kojadinovic',
+    locale: 'en_US',
+    type: 'website',
   },
   robots: {
     index: true,
@@ -29,38 +30,37 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
     },
   },
 };
 
 const ibmPlexSans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-ibm-plex-sans",
-  weight: ["500", "600", "700"],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-ibm-plex-sans',
+  weight: ['500', '600', '700'],
 });
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html
-      lang="en"
-      className={cx("text-white bg-[#0f0e0d]", ibmPlexSans.variable)}
-    >
-      <body className="antialiased max-w-3xl mx-auto w-full px-4 lg:px-0 mt-8 lg:mx-auto font-sans">
-        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
-          <Navbar />
-          {children}
-          <Footer />
-          <Analytics />
-          <SpeedInsights />
-        </main>
+    <html lang="en" suppressHydrationWarning className="dark">
+      <body
+        className={`antialiased max-w-3xl mx-auto w-full px-4 lg:px-0 mt-8 lg:mx-auto font-sans ${ibmPlexSans.variable}`}
+      >
+        <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
+          <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
+            <Navbar />
+            {children}
+            <Footer />
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );
