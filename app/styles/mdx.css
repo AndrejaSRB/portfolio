@@ -22,8 +22,8 @@
 }
 
 .prose .anchor:after {
-  color: var(--muted-foreground);
-  content: '#';
+  color: var(--primary);
+  content: "#";
 }
 
 .prose *:hover > .anchor {
@@ -31,17 +31,17 @@
 }
 
 .prose pre {
-  @apply rounded-lg overflow-x-auto border py-2 px-3 text-sm my-2;
-  background-color: var(--muted);
+  @apply rounded-md overflow-x-auto border py-3 px-4 text-sm my-2;
+  background-color: oklch(0.18 0.01 67.44);
   border-color: var(--border);
-  /* color for pre code is handled by sugar-high (var(--sh-identifier)) in globals.css */
 }
 
 .prose code {
   /* For inline code */
   @apply px-1 py-0.5 rounded-lg;
-  background-color: var(--muted);
-  color: var(--muted-foreground);
+  background-color: oklch(0.18 0.01 67.44);
+  color: oklch(0.85 0.01 255.51);
+  border: 1px solid var(--border);
 }
 
 .prose pre code {
@@ -144,11 +144,11 @@
 }
 
 .prose ol li::marker {
-  color: var(--foreground); /* Using foreground for numbered lists, or use --primary if preferred */
+  color: var(--primary);
 }
 
 .text-zinc-400 .prose ol li::marker {
-  color: var(--foreground);
+  color: var(--primary);
 }
 
 .prose > :first-child {

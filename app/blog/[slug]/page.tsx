@@ -79,7 +79,7 @@ export default function Blog({
   }
 
   return (
-    <section className="text-zinc-400">
+    <section className="text-zinc-400 content-padding">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -102,22 +102,29 @@ export default function Blog({
           }),
         }}
       />
+
       <h1 className="title font-semibold text-2xl tracking-tighter text-white">
         {post.metadata.title}
       </h1>
+
       <div className="flex items-center gap-2 mt-2 mb-8 text-sm">
         <span>{formatDate(post.metadata.publishedAt)}</span>
+
         {post.metadata.readingTime && (
           <>
             <span className="text-zinc-600">|</span>
+
             <span>{post.metadata.readingTime}</span>
           </>
         )}
       </div>
+
       <article className="prose text-zinc-400 prose-headings:text-white prose-strong:text-white max-w-none">
         <CustomMDX source={post.content} components={{ Highlight }} />
       </article>
+
       <Separator className="mt-6 mb-4" />
+
       <BlogCta />
     </section>
   );

@@ -4,22 +4,34 @@ import ProjectCard from "./project-card";
 
 const projects: Project[] = [
   {
-    title: "traceguard",
+    title: "HyperSignals",
     description:
-      "A developer tool for monitoring all RPC requests with human-readable error decoding, smart contract insights, and full trace visibility across EVM chains.",
+      "HyperSignals turns real-time market data into actionable trading insights by tracking top traders, whale flows, and KOL sentiment across Hyperliquid",
+    link: "https://hypersignals.ai/",
+  },
+  {
+    title: "Traceguard",
+    description:
+      "Traceguard helps developers trace and debug RPC requests across EVM chains with human-readable errors and smart contract insights.",
     link: "https://traceguard-landing.vercel.app/",
   },
   {
-    title: "mekaapes-game",
+    title: "MekaApes Game",
     description:
       "MekaApes Genesis: An in-depth GameFi NFT strategy game on Ethereum that generated over $2M in revenue and sold over 100,000 NFTs.",
-    link: "https://github.com/AndrejaSRB/mekaapes-game",
+    link: "https://docs.oogaverse.com/introduction/mekaapes-game-stage-2",
+  },
+  {
+    title: "Pooky",
+    description:
+      "Pooky is a Web3 football prediction game where players use collectible NFTs called Pookyballs to forecast match scores and earn rewards, offering a risk-free alternative to traditional sports betting.",
+    link: "https://whitepaper.pooky.gg/",
   },
 ];
 
 export function Projects() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+    <div className="grid grid-cols-1 md:grid-cols-2">
       {projects.map((project) => (
         <ProjectCard key={project.title} project={project} />
       ))}

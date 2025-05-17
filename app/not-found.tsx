@@ -9,10 +9,12 @@ export default function NotFound() {
           <h1 className="text-4xl lg:text-9xl font-bold tracking-tighter sm:text-5xl animate-bounce">
             404
           </h1>
+
           <p className="text-lg text-gray-500 dark:text-gray-400">
             Oops! Page not found. Did it get lost in the mempool?
           </p>
         </div>
+
         <Link href="/" prefetch={false}>
           <Button variant="default" size="lg">
             Return to Portfolio

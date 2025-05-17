@@ -52,14 +52,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="dark">
       <body
-        className={`antialiased max-w-3xl mx-auto w-full px-4 lg:px-0 font-sans ${ibmPlexSans.variable} flex flex-col min-h-screen`}
+        className={`antialiased max-w-4xl mx-auto w-full font-sans ${ibmPlexSans.variable} flex flex-col min-h-screen`}
       >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           disableTransitionOnChange
         >
-          <main className={`min-w-0 flex flex-col px-2 md:px-0 flex-1 pt-6`}>
+          <main className={`min-w-0 flex flex-col  flex-1 pt-6`}>
             <Navbar />
             {children}
             <Footer />
