@@ -13,7 +13,7 @@ export default function Home() {
         <div className="text-muted-foreground">
           Hey, building web3 interfaces where UX meets protocol complexity.{" "}
           <span className="text-white">
-            With over 5 years building in the Web3 frontend space
+            With over 4 years building in the Web3 frontend space
           </span>
           , I specialize in wallet-native UX, multi-chain data flows, and
           blazing-fast UI delivery — crafting scalable apps in{" "}

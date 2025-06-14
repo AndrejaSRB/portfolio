@@ -6,25 +6,25 @@ const projects: Project[] = [
   {
     title: "HyperSignals",
     description:
-      "HyperSignals turns real-time market data into actionable trading insights by tracking top traders, whale flows, and KOL sentiment across Hyperliquid",
+      "HyperSignals is a real-time crypto insights dApp where users can track trading signals, monitor market sentiment, and place onchain orders.",
     link: "https://hypersignals.ai/",
   },
   {
-    title: "Traceguard",
+    title: "NOMY",
     description:
-      "Traceguard helps developers trace and debug RPC requests across EVM chains with human-readable errors and smart contract insights.",
-    link: "https://traceguard-landing.vercel.app/",
+      "NOMY is an AI-powered Web3 assistant that lets users interact with dApps through natural language. It supports both EVM and Solana and executes onchain actions via chat.",
+    link: "https://www.biconomy.io/",
   },
   {
     title: "MekaApes Game",
     description:
-      "MekaApes Genesis: An in-depth GameFi NFT strategy game on Ethereum that generated over $2M in revenue and sold over 100,000 NFTs.",
+      "MekaApes Genesis is a turn-based NFT strategy game on Ethereum that generated over $2M in volume and sold 100K+ NFTs. Built with smart contract integration and GameFi mechanics.",
     link: "https://docs.oogaverse.com/introduction/mekaapes-game-stage-2",
   },
   {
     title: "Pooky",
     description:
-      "Pooky is a Web3 football prediction game where players use collectible NFTs called Pookyballs to forecast match scores and earn rewards, offering a risk-free alternative to traditional sports betting.",
+      "Pooky is a Web3 football prediction game where players use NFT collectibles to forecast match outcomes and earn rewards — a risk-free alternative to sports betting.",
     link: "https://whitepaper.pooky.gg/",
   },
 ];
